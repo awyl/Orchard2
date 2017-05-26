@@ -285,6 +285,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orchard.GoogleCloud.Core", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orchard.GoogleCloud.Diagnostics.Logging", "src\Orchard.ThirdParty\GoogleCloud\Orchard.GoogleCloud.Diagnostics.Logging\Orchard.GoogleCloud.Diagnostics.Logging.csproj", "{2156E43B-49D9-4754-B220-C1031A0FA56B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{00F7FD76-B5BB-4C1D-8535-1AE7186A1651}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orchard.GoogleCloud.Web", "src\Orchard.ThirdParty\GoogleCloud\Samples\Orchard.GoogleCloud.Web\Orchard.GoogleCloud.Web.csproj", "{460755FF-B8FD-4C7E-AFD4-C4187AC32E82}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bundles", "Bundles", "{50166E51-1F3B-46A3-AFDA-6CDD58CF02AC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrchardCore.GoogleCloud.Cms", "src\Orchard.ThirdParty\GoogleCloud\Bundles\OrchardCore.GoogleCloud.Cms\OrchardCore.GoogleCloud.Cms.csproj", "{96D843B3-374F-4104-B53A-76B99B3AF4B8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -779,6 +787,14 @@ Global
 		{2156E43B-49D9-4754-B220-C1031A0FA56B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2156E43B-49D9-4754-B220-C1031A0FA56B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2156E43B-49D9-4754-B220-C1031A0FA56B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{460755FF-B8FD-4C7E-AFD4-C4187AC32E82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{460755FF-B8FD-4C7E-AFD4-C4187AC32E82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{460755FF-B8FD-4C7E-AFD4-C4187AC32E82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{460755FF-B8FD-4C7E-AFD4-C4187AC32E82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96D843B3-374F-4104-B53A-76B99B3AF4B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96D843B3-374F-4104-B53A-76B99B3AF4B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96D843B3-374F-4104-B53A-76B99B3AF4B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96D843B3-374F-4104-B53A-76B99B3AF4B8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -921,5 +937,9 @@ Global
 		{F862029D-E6B1-450D-B9AF-1B0E2120FEA1} = {B3D0C124-EF72-4F7B-AE0C-4C9B17B4668F}
 		{2E81C37E-4F00-46C1-97D9-C85275817F8F} = {F862029D-E6B1-450D-B9AF-1B0E2120FEA1}
 		{2156E43B-49D9-4754-B220-C1031A0FA56B} = {F862029D-E6B1-450D-B9AF-1B0E2120FEA1}
+		{00F7FD76-B5BB-4C1D-8535-1AE7186A1651} = {F862029D-E6B1-450D-B9AF-1B0E2120FEA1}
+		{460755FF-B8FD-4C7E-AFD4-C4187AC32E82} = {00F7FD76-B5BB-4C1D-8535-1AE7186A1651}
+		{50166E51-1F3B-46A3-AFDA-6CDD58CF02AC} = {F862029D-E6B1-450D-B9AF-1B0E2120FEA1}
+		{96D843B3-374F-4104-B53A-76B99B3AF4B8} = {50166E51-1F3B-46A3-AFDA-6CDD58CF02AC}
 	EndGlobalSection
 EndGlobal

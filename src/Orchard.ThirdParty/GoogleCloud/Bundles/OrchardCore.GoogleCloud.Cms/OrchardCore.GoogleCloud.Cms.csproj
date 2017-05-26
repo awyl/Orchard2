@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.6</TargetFramework>
+    <IgnorePackageAssets>true</IgnorePackageAssets>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\OrchardCore\OrchardCore.Cms\OrchardCore.Cms.csproj" PrivateAssets="none" />
+    <ProjectReference Include="..\..\Orchard.GoogleCloud.Core\Orchard.GoogleCloud.Core.csproj" PrivateAssets="none" />
+    <ProjectReference Include="..\..\Orchard.GoogleCloud.Diagnostics.ErrorReporting\Orchard.GoogleCloud.Diagnostics.ErrorReporting.csproj" PrivateAssets="none" />
+    <ProjectReference Include="..\..\Orchard.GoogleCloud.Diagnostics.Logging\Orchard.GoogleCloud.Diagnostics.Logging.csproj" PrivateAssets="none" />
+    <ProjectReference Include="..\..\Orchard.GoogleCloud.Diagnostics.Trace\Orchard.GoogleCloud.Diagnostics.Trace.csproj" PrivateAssets="none" />
+    <ProjectReference Include="..\..\Orchard.GoogleCloud.HealthCheck\Orchard.GoogleCloud.HealthCheck.csproj" PrivateAssets="none" />
+  </ItemGroup>
+
+</Project>
