@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Orchard.Environment.Extensions;
 using Orchard.Recipes.Models;
 using Orchard.Recipes.Services;
 
@@ -14,13 +15,16 @@ namespace Orchard.Recipes.RecipeSteps
     {
         private readonly IRecipeHarvester _recipeHarvester;
         private readonly IRecipeExecutor _recipeManager;
+        private readonly IExtensionManager _extensionManager;
 
         public RecipesStep(
             IRecipeHarvester recipeHarvester,
-            IRecipeExecutor recipeManager)
+            IRecipeExecutor recipeManager,
+            IExtensionManager extensionManager)
         {
             _recipeHarvester = recipeHarvester;
             _recipeManager = recipeManager;
+            _extensionManager = extensionManager;
         }
 
         /*
@@ -47,7 +51,8 @@ namespace Orchard.Recipes.RecipeSteps
                 
                 if (!recipesDictionary.TryGetValue(recipe.ExecutionId, out recipes))
                 {
-                    recipes = (await _recipeHarvester.HarvestRecipesAsync(recipe.ExecutionId)).ToDictionary(x => x.Name);
+                    var extension = _extensionManager.GetExtension(recipe.ExecutionId);
+                    recipes = (await _recipeHarvester.HarvestRecipesAsync(extension.SubPath)).ToDictionary(x => x.Name);
                     recipesDictionary[recipe.ExecutionId] = recipes;
                 }
 

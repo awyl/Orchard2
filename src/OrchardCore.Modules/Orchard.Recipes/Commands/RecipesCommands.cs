@@ -3,25 +3,30 @@ using Orchard.Environment.Commands;
 using Orchard.Recipes.Services;
 using System.Linq;
 using System.Threading.Tasks;
+using Orchard.Environment.Extensions;
 
 namespace Orchard.Recipes.Commands
 {
     public class RecipesCommands : DefaultCommandHandler
     {
         private readonly IRecipeHarvester _recipeHarvester;
+        private readonly IExtensionManager _extensionManager;
 
         public RecipesCommands(
             IRecipeHarvester recipeHarvester,
+            IExtensionManager extensionManager,
             IStringLocalizer<RecipesCommands> localizer) : base(localizer)
         {
             _recipeHarvester = recipeHarvester;
+            _extensionManager = extensionManager;
         }
 
         [CommandHelp("recipes harvest <extensionId>", "\tDisplays a list of available recipes for a specific extension.")]
         [CommandName("recipes harvest")]
         public async Task Harvest(string extensionId)
         {
-            var recipes = await _recipeHarvester.HarvestRecipesAsync(extensionId);
+            var extension = _extensionManager.GetExtension(extensionId);
+            var recipes = await _recipeHarvester.HarvestRecipesAsync(extension.SubPath);
             if (!recipes.Any())
             {
                 await Context.Output.WriteLineAsync(T[$"No recipes found for extension '{extensionId}'."]);

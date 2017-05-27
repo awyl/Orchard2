@@ -60,16 +60,20 @@ namespace Orchard.Setup.Services
             T = stringLocalizer;
         }
 
-        public async Task<IEnumerable<RecipeDescriptor>> GetSetupRecipesAsync()
+        public Task<IEnumerable<RecipeDescriptor>> GetSetupRecipesAsync()
         {
             if (_recipes == null)
             {
-                _recipes = (await _recipeHarvester.HarvestRecipesAsync())
+                _recipes = _extensionManager
+                    .GetExtensions()
+                    .Select(extension =>
+                        _recipeHarvester.HarvestRecipesAsync(extension.SubPath))
+                    .SelectMany(extension => extension.Result)
                     .Where(recipe => recipe.IsSetupRecipe)
                     .ToList();
             }
 
-            return _recipes;
+            return Task.FromResult(_recipes.AsEnumerable());
         }
 
         public Task<string> SetupAsync(SetupContext context)

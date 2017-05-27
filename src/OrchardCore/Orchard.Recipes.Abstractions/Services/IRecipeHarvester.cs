@@ -9,14 +9,9 @@ namespace Orchard.Recipes.Services
     public interface IRecipeHarvester
     {
         /// <summary>
-        /// Returns a collection of all recipes.
-        /// </summary>
-        Task<IEnumerable<RecipeDescriptor>> HarvestRecipesAsync();
-
-        /// <summary>
         /// Returns a collection of all recipes found in the specified extension.
         /// </summary>
-        Task<IEnumerable<RecipeDescriptor>> HarvestRecipesAsync(string extensionId);
+        Task<IEnumerable<RecipeDescriptor>> HarvestRecipesAsync(string subPath);
     }
 
     public static class RecipeHarvesterExtensions
