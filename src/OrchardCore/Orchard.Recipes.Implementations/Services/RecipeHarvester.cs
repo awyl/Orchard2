@@ -40,16 +40,13 @@ namespace Orchard.Recipes.Services
 
         private IEnumerable<RecipeDescriptor> HarvestRecipes(string subPath)
         {
-            var folderSubPath = Path.Combine(subPath, "recipes");
-            var recipeContainerFileInfo = _hostingEnvironment
-                .ContentRootFileProvider
-                .GetFileInfo(folderSubPath);
-            
             var matcher = new Matcher(System.StringComparison.OrdinalIgnoreCase);
             matcher.AddInclude("*.recipe.json");
 
+            var folderSubPath = Path.Combine(_hostingEnvironment.ContentRootPath, subPath, "recipes");
+
             return matcher
-                .Execute(new DirectoryInfoWrapper(new DirectoryInfo(recipeContainerFileInfo.PhysicalPath)))
+                .Execute(new DirectoryInfoWrapper(new DirectoryInfo(folderSubPath)))
                 .Files
                 .Select(match =>
                 {
