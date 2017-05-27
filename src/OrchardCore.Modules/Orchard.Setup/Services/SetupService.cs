@@ -17,6 +17,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using YesSql;
 using Microsoft.Extensions.Localization;
+using Microsoft.AspNetCore.Hosting;
 
 namespace Orchard.Setup.Services
 {
@@ -30,6 +31,8 @@ namespace Orchard.Setup.Services
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IRunningShellTable _runningShellTable;
         private readonly IRecipeHarvester _recipeHarvester;
+        private readonly IHostingEnvironment _hostingEnvironment;
+
         private readonly ILogger _logger;
         private readonly IStringLocalizer T;
 
@@ -44,6 +47,7 @@ namespace Orchard.Setup.Services
             IHttpContextAccessor httpContextAccessor,
             IRunningShellTable runningShellTable,
             IRecipeHarvester recipeHarvester,
+            IHostingEnvironment hostingEnvironment,
             ILogger<SetupService> logger,
             IStringLocalizer<SetupService> stringLocalizer
             )
@@ -56,6 +60,7 @@ namespace Orchard.Setup.Services
             _httpContextAccessor = httpContextAccessor;
             _runningShellTable = runningShellTable;
             _recipeHarvester = recipeHarvester;
+            _hostingEnvironment = hostingEnvironment;
             _logger = logger;
             T = stringLocalizer;
         }
@@ -66,9 +71,10 @@ namespace Orchard.Setup.Services
             {
                 _recipes = _extensionManager
                     .GetExtensions()
-                    .Select(extension =>
-                        _recipeHarvester.HarvestRecipesAsync(extension.SubPath))
-                    .SelectMany(extension => extension.Result)
+                    .Select(extension => extension.SubPath)
+                    .Concat(new[] { _hostingEnvironment.ContentRootPath })
+                    .Select(subPath => _recipeHarvester.HarvestRecipesAsync(subPath))
+                    .SelectMany(extension => extension.GetAwaiter().GetResult())
                     .Where(recipe => recipe.IsSetupRecipe)
                     .ToList();
             }

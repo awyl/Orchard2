@@ -37,7 +37,7 @@ namespace Orchard.Recipes.RecipeSteps
         */
         public async Task ExecuteAsync(RecipeExecutionContext context)
         {
-            if (!String.Equals(context.Name, "Recipes", StringComparison.OrdinalIgnoreCase))
+            if (!string.Equals(context.Name, "Recipes", StringComparison.OrdinalIgnoreCase))
             {
                 return;
             }
