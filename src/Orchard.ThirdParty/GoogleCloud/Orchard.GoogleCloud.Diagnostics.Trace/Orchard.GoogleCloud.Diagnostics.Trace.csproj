@@ -14,13 +14,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\OrchardCore\OrchardCore.AsModule\OrchardCore.AsModule.csproj" />
+    <ProjectReference Include="..\..\..\OrchardCore\Orchard.Environment.Shell.Abstractions\Orchard.Environment.Shell.Abstractions.csproj" />
     <ProjectReference Include="..\Orchard.GoogleCloud.Core\Orchard.GoogleCloud.Core.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="Orchard.Environment.Shell.Abstractions">
-      <HintPath>..\..\..\OrchardCore\Orchard.Environment.Shell.Abstractions\bin\Debug\netstandard1.6\Orchard.Environment.Shell.Abstractions.dll</HintPath>
-    </Reference>
   </ItemGroup>
 
 </Project>

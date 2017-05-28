@@ -8,12 +8,12 @@
 
   <ItemGroup>
     <PackageReference Include="Google.Cloud.Diagnostics.AspNetCore" Version="1.0.0-beta01" />
-  </ItemGroup>  
-  
+  </ItemGroup>
+
   <ItemGroup>
-    <ProjectReference Include="..\..\..\OrchardCore\Orchard.Environment.Shell.Abstractions\Orchard.Environment.Shell.Abstractions.csproj" />
     <ProjectReference Include="..\..\..\OrchardCore\OrchardCore.AsModule\OrchardCore.AsModule.csproj" />
+    <ProjectReference Include="..\..\..\OrchardCore\Orchard.Environment.Shell.Abstractions\Orchard.Environment.Shell.Abstractions.csproj" />
     <ProjectReference Include="..\Orchard.GoogleCloud.Core\Orchard.GoogleCloud.Core.csproj" />
   </ItemGroup>
-  
+
 </Project>

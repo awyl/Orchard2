@@ -24,11 +24,13 @@ Configuration is done directly in your tenant file, i.e. settings.txt or tenants
 
 ## Deploy
 
+```
 dotnet restore
 dotnet publish -c Release
 gcloud auth activate-service-account <SERVICEACCOUNT> --key-file <KEYFILENAME>
 gcloud config set project <PROJECTNAME>
 gcloud beta app deploy app.yaml -q
+```
 
 ## Usages
 ### Tracing
