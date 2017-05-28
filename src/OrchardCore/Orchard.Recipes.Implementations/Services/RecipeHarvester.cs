@@ -18,6 +18,8 @@ namespace Orchard.Recipes.Services
         private readonly IExtensionManager _extensionManager;
         private readonly IHostingEnvironment _hostingEnvironment;
 
+        private const string RecipeWildCard = "*.recipe.json";
+
         public RecipeHarvester(IExtensionManager extensionManager,
             IHostingEnvironment hostingEnvironment,
             IStringLocalizer<RecipeHarvester> localizer,
@@ -40,13 +42,14 @@ namespace Orchard.Recipes.Services
 
         private IEnumerable<RecipeDescriptor> HarvestRecipes(string subPath)
         {
-            var matcher = new Matcher(System.StringComparison.OrdinalIgnoreCase);
-            matcher.AddInclude("*.recipe.json");
+            var matcher = new Matcher();
+            matcher.AddInclude(RecipeWildCard);
 
-            var folderSubPath = Path.Combine(_hostingEnvironment.ContentRootPath, subPath, "recipes");
+            var folderSubPath = Path.Combine(subPath, "recipes");
+            var hostingSubPath = Path.Combine(_hostingEnvironment.ContentRootPath, folderSubPath);
 
             return matcher
-                .Execute(new DirectoryInfoWrapper(new DirectoryInfo(folderSubPath)))
+                .Execute(new DirectoryInfoWrapper(new DirectoryInfo(hostingSubPath)))
                 .Files
                 .Select(match =>
                 {
