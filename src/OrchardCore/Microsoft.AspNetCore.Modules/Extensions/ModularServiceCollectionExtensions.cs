@@ -40,6 +40,18 @@ namespace Microsoft.Extensions.DependencyInjection
         }
 
         /// <summary>
+        /// Provides ability to configure additional module services to the specified <see cref="Microsoft.Extensions.DependencyInjection.IServiceCollection"/>.
+        /// </summary>
+        public static IServiceCollection ConfigureModules(this IServiceCollection services, Action<ModularServiceCollection> configure = null)
+        {
+            var modularServiceCollection = new ModularServiceCollection(services);
+
+            configure?.Invoke(modularServiceCollection);
+
+            return services;
+        }
+
+        /// <summary>
         /// Registers a <see cref="IConfiguration"/> object that can be used by the modules.
         /// </summary>
         /// <returns></returns>

@@ -25,7 +25,16 @@ namespace Orchard.GoogleCloud.Web
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddOrchardCms();
+            services
+                .AddOrchardCms()
+                .ConfigureModules(cf => {
+                    // Provided at startup, and disabled after.
+                    // TODO: Provide configuration... Settings file?
+                    cf.WithDefaultFeatures(
+                        "Orchard.GoogleCloud.Diagnostics.ErrorReporting",
+                        "Orchard.GoogleCloud.Diagnostics.Logging",
+                        "Orchard.GoogleCloud.Diagnostics.Trace");
+                });
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
